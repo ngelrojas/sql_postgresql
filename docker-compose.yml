@@ -2,28 +2,16 @@ version: '3'
 
 services:
   db:
-    image: postgres
-    environment:
-      POSTGRES_PASSWORD: "admin2022"
-    ports:
-      - "15432:5432"
+    image: postgres:13.0-alpine
+    container_name: 'postgres_lab'
     volumes:
-      - /home/renatogroffe/Desenvolvimento/Docker-Compose/PostgreSQL:/var/lib/postgresql/data 
-    networks:
-      - postgres-compose-network
-      
-  pgadmin:
-    image: dpage/pgadmin4
+      - postgres_data:/var/lib/postgresql/data/
     environment:
-      PGADMIN_DEFAULT_EMAIL: "angelrojas@rednodes.com"
-      PGADMIN_DEFAULT_PASSWORD: "admin2022"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "admin"
+      POSTGRES_DB: "apivendas"
     ports:
-      - "16543:80"
-    depends_on:
-      - db 
-    networks:
-      - postgres-compose-network
+      - "5432:5432"
 
-networks: 
-  postgres-compose-network:
-    driver: bridge
+volumes:
+  postgres_data:
