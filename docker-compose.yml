@@ -1,15 +1,15 @@
-version: '3'
+version: "3"
 
 services:
   db:
     image: postgres:13.0-alpine
-    container_name: 'postgres_lab'
+    container_name: "postgres_lab"
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "admin"
-      POSTGRES_DB: "apivendas"
+      POSTGRES_DB: "marketlab"
     ports:
       - "5432:5432"
 
